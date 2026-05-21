@@ -48,6 +48,5 @@ public class UsuarioService {
     	repository.salvar(user);
     	
     	return true;
-
     }
 }
