@@ -8,34 +8,37 @@ import java.time.LocalDate;
 
 public class PostService {
 
+    private UsuarioRepository usuarioRepository;
+    private PostRepository postRepository;
+
     public boolean criarPost(long idAutor, String titulo, String conteudo) {
 
-        Usuario autor = UsuarioRepository.buscarId(idAutor);
+        Usuario autor = usuarioRepository.buscarId(idAutor);
         if (autor == null) return false;
 
         Post post = new Post(autor, titulo, conteudo);
         post.setDtCriacao(LocalDate.now());
 
-        repository.salvar(post);
+        postRepository.salvar(post);
 
         return true;
     }
 
     public boolean editarPost(long idPost, String titulo, String conteudo) {
 
-        Post post = repository.buscarId(idPost);
+        Post post = postRepository.buscarId(idPost);
         if (post == null) return false;
 
         post.setTitulo(titulo);
         post.setConteudo(conteudo);
 
-        repository.salvar(post);
+        postRepository.salvar(post);
         return true;
     }
 
     public Post buscarPostPorId(long idPost) {
 
-        Post post = repository.buscarId(idPost);
+        Post post = postRepository.buscarId(idPost);
         if (post == null) return null;
 
         return post;
@@ -43,20 +46,20 @@ public class PostService {
 
     public List<Post> buscarPostPorTitulo(String titulo) {
 
-        return repository.buscarTitulo(titulo);
+        return postRepository.buscarTitulo(titulo);
     }
 
     public List<Post> listarPosts() {
 
-        return repository.listarPosts();
+        return postRepository.listarPosts();
     }
 
     public boolean deletarPost(long idPost) {
 
-        Post post = repository.buscarId(idPost);
+        Post post = postRepository.buscarId(idPost);
         if (post == null) return false;
 
-        repository.remover(post);
+        postRepository.remover(post);
         return true;
     }
 }

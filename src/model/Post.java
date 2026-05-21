@@ -3,13 +3,14 @@ package model;
 import java.time.LocalDate;
 import model.Usuario;
 
-public class Post {
+public class Post implements Curtivel{
 
     private long id;
     private String titulo;
     private String conteudo;
     private LocalDate dtCriacao;
     private Usuario autor;
+    private long qtdCurtidas;
 
     public Post(Usuario autor, String titulo, String conteudo) {
         this.autor = autor;
@@ -55,5 +56,15 @@ public class Post {
 
     public void setAutor(Usuario autor) {
         this.autor = autor;
+    }
+
+    @Override
+    public long getQtdCurtidas() {
+        return qtdCurtidas;
+    }
+
+    @Override
+    public void setQtdCurtidas(long qtdCurtidas) {
+        this.qtdCurtidas = qtdCurtidas;
     }
 }

@@ -5,9 +5,11 @@ import java.time.LocalDate;
 
 public class UsuarioService {
 
+    private UsuarioRepository usuarioRepository;
+
     public Boolean cadastro(String nome, String email, String senha) {
 
-        Usuario usuarioExistente = repository.buscarPorEmail(email);
+        Usuario usuarioExistente = usuarioRepository.buscarPorEmail(email);
 
         if (usuarioExistente != null) {
             return false;
@@ -20,13 +22,13 @@ public class UsuarioService {
         user.setSenha(senha);
         user.setDataCriacao(LocalDate.now());
 
-        repository.salvar(user);
+        usuarioRepository.salvar(user);
         return true;
     }
 
     public Boolean login(String email, String senha) {
 
-         Usuario user = repository.buscarPorEmail(email);
+         Usuario user = usuarioRepository.buscarPorEmail(email);
 
         if (user == null || !senha.equals(user.getSenha())) {
             return false;
@@ -37,15 +39,15 @@ public class UsuarioService {
 
     public boolean editarConta(long id, String nome, String email, String senha) {
     	
-    	Usuario user = repository.buscarId(id);
+    	Usuario user = usuarioRepository.buscarId(id);
 
         if (user == null) return false;
 			
     	user.setNome(nome);
     	user.setEmail(email);
     	user.setSenha(senha);
-    	
-    	repository.salvar(user);
+
+        usuarioRepository.salvar(user);
     	
     	return true;
     }

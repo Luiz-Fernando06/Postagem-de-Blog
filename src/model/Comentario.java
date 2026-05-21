@@ -2,12 +2,13 @@ package model;
 
 import java.time.LocalDate;
 
-public class Comentario {
+public class Comentario implements Curtivel{
     private long id;
     private String conteudo;
     private Usuario autor;
     private Post postagem;
     private LocalDate dataCriacao;
+    private long qtdCurtidas;
 
     public Comentario(Usuario autor, Post postagem, String conteudo) {
         this.autor = autor;
@@ -53,5 +54,13 @@ public class Comentario {
 
     public void setDataCriacao(LocalDate dataCriacao) {
         this.dataCriacao = dataCriacao;
+    }
+
+    public long getQtdCurtidas() {
+        return qtdCurtidas;
+    }
+
+    public void setQtdCurtidas(long qtdCurtidas) {
+        this.qtdCurtidas = qtdCurtidas;
     }
 }
