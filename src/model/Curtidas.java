@@ -1,5 +1,8 @@
 package model;
 
+/**
+ * Representa uma curtida única de um usuário em um post ou comentário.
+ */
 public class Curtidas {
 
     private long id;

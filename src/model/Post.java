@@ -1,8 +1,10 @@
 package model;
 
 import java.time.LocalDate;
-import model.Usuario;
 
+/**
+ * Representa uma postagem criada por um usuário no blog.
+ */
 public class Post implements Curtivel{
 
     private long id;
@@ -18,6 +20,7 @@ public class Post implements Curtivel{
         this.conteudo = conteudo;
     }
 
+    @Override
     public long getId() {
         return id;
     }

@@ -2,6 +2,9 @@ package model;
 
 import java.time.LocalDate;
 
+/**
+ * Representa um comentário feito por um usuário em uma postagem.
+ */
 public class Comentario implements Curtivel{
     private long id;
     private String conteudo;
@@ -16,6 +19,7 @@ public class Comentario implements Curtivel{
         this.conteudo = conteudo;
     }
 
+    @Override
     public long getId() {
         return id;
     }

@@ -2,6 +2,9 @@ package model;
 
 import java.time.LocalDate;
 
+/**
+ * Representa um usuário cadastrado no sistema do blog.
+ */
 public class Usuario {
 
     private long id;
