@@ -1,5 +1,6 @@
 package controller;
 
+import app.Utilitarios;
 import model.Usuario;
 import service.UsuarioService;
 import java.util.Scanner;
@@ -19,7 +20,7 @@ public class UsuarioController {
     }
 
     public void cadastrar() {
-        Main.limparTela();
+        Utilitarios.limparTela();
 
         System.out.print("Nome: ");
         String nome = LER.nextLine();
@@ -40,7 +41,7 @@ public class UsuarioController {
     }
 
     public void login() {
-        Main.limparTela();
+        Utilitarios.limparTela();
 
         if (usuarioLogado != null) {
             System.out.println("Usuario já logado");
@@ -65,7 +66,7 @@ public class UsuarioController {
     }
 
     public void logout() {
-        Main.limparTela();
+        Utilitarios.limparTela();
 
         if (usuarioLogado == null) {
             System.out.println("Nenhum usuario logado!");
@@ -77,7 +78,7 @@ public class UsuarioController {
     }
 
     public void editarConta() {
-        Main.limparTela();
+        Utilitarios.limparTela();
 
         if(usuarioLogado == null) {
             System.out.println("Faça login para editar");

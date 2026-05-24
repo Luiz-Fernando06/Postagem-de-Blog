@@ -14,9 +14,9 @@ import java.util.List;
  * Camada de regra de negócio para criação, edição, listagem e remoção de comentários.
  */
 public class ComentarioService {
-    private final ComentarioRepository comentarioRepository;
-    private final UsuarioRepository usuarioRepository;
-    private final PostRepository postRepository;
+    private ComentarioRepository comentarioRepository;
+    private UsuarioRepository usuarioRepository;
+    private PostRepository postRepository;
     private CurtidasService curtidasService;
 
     public ComentarioService(ComentarioRepository comentarioRepository,

@@ -12,8 +12,8 @@ import java.util.List;
  */
 public class CurtidasService {
 
-    private final UsuarioRepository usuarioRepository;
-    private final CurtidasRepository curtidasRepository;
+    private UsuarioRepository usuarioRepository;
+    private CurtidasRepository curtidasRepository;
 
     public CurtidasService(UsuarioRepository usuarioRepository, CurtidasRepository curtidasRepository) {
         this.usuarioRepository = usuarioRepository;

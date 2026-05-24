@@ -1,5 +1,6 @@
 package controller;
 
+import app.Utilitarios;
 import model.Post;
 import service.PostService;
 import java.util.ArrayList;
@@ -12,15 +13,15 @@ import static controller.UsuarioController.usuarioLogado;
  */
 public class PostController {
 
-    private Scanner LER = new Scanner(System.in);
-    private  PostService POSTSERVICE;
+    private final Scanner LER;
+    private final PostService POSTSERVICE;
 
     public PostController(PostService postService, Scanner ler) {
         this.POSTSERVICE = postService;
         this.LER = ler;
     }
     public void criarPost() {
-        Main.limparTela();
+        Utilitarios.limparTela();
 
         if (usuarioLogado == null) {
             System.out.println("Faca login!");
@@ -38,7 +39,7 @@ public class PostController {
     }
 
     public void listarPosts() {
-        Main.limparTela();
+        Utilitarios.limparTela();
 
         List<Post> posts = POSTSERVICE.listarPosts();
 
@@ -51,11 +52,11 @@ public class PostController {
             exibirPost(post);
         }
 
-        Main.linha();
+        Utilitarios.linha();
     }
 
     public void editarPost() {
-        Main.limparTela();
+        Utilitarios.limparTela();
 
         if (usuarioLogado == null) {
             System.out.println("Faça login!");
@@ -69,7 +70,7 @@ public class PostController {
             return;
         }
 
-        Post postEscolhido = escolherPost(meusPosts, "Escolha um post: ")
+        Post postEscolhido = escolherPost(meusPosts, "Escolha um post: ");
         if (postEscolhido == null) return;
 
         boolean editando = true;
@@ -81,7 +82,7 @@ public class PostController {
             System.out.println(" 3 - Tudo");
             System.out.println(" 4 - Sair");
 
-            int opcao = lerInteiro("Opcao: ");
+            int opcao = Utilitarios.lerInteiro("Opcao: ");
 
             switch (opcao) {
                 case 1:
@@ -143,7 +144,7 @@ public class PostController {
         System.out.println(" 1 - Buscar por ID");
         System.out.println(" 2 - Buscar por Titulo");
         System.out.println(" 3 - Voltar");
-        int escolha = lerInteiro("Opção: ")
+        int escolha = Utilitarios.lerInteiro("Opção: ");
 
         switch (escolha) {
             case 1:
@@ -176,7 +177,7 @@ public class PostController {
                 }
 
                 for (int i = 0; i < posts.size(); i++) {
-                    Main.linha();
+                    Utilitarios.linha();
                     Post post2 = posts.get(i);
                     System.out.println("[" + post2.getId() + "] " + post2.getTitulo());
                     System.out.println("Autor: " + post2.getAutor().getNome());
@@ -184,7 +185,7 @@ public class PostController {
                     System.out.println(post2.getConteudo());
                 }
 
-                Main.linha();
+                Utilitarios.linha();
                 break;
 
             case 3:
@@ -197,7 +198,7 @@ public class PostController {
     }
 
     public void deletarPost() {
-        Main.limparTela();
+        Utilitarios.limparTela();
 
         if (usuarioLogado == null) {
             System.out.println("Faca login!");
@@ -210,7 +211,7 @@ public class PostController {
             System.out.println("Nenhum post.");
             return;
         }
-        Post postEscolhido = escolherPost(meusPosts, "Escolha um Post para deletar: ")
+        Post postEscolhido = escolherPost(meusPosts, "Escolha um Post para deletar: ");
         if (postEscolhido == null) return;
 
         if (postEscolhido.getAutor().getId() != usuarioLogado.getId()) {
@@ -236,7 +237,7 @@ public class PostController {
     }
 
     private void exibirPost(Post post) {
-        Main.linha();
+        Utilitarios.linha();
         System.out.println("[ID " + post.getId() + "] " + post.getTitulo());
         System.out.println("Autor: " + post.getAutor().getNome());
         System.out.println("Criado em: " + post.getDtCriacao());
@@ -261,22 +262,12 @@ public class PostController {
     }
 
     private Post escolherPost(List<Post> posts, String mensagem) {
-        int escolha = lerInteiro(mensagem);
+        int escolha = Utilitarios.lerInteiro(mensagem);
 
         if (escolha < 1 || escolha > posts.size()) {
             System.out.println("Opcao invalida!");
             return null;
         }
         return posts.get(escolha - 1);
-    }
-
-    private int lerInteiro(String mensagem) {
-        System.out.print(mensagem);
-
-        try {
-            return Integer.parseInt(LER.nextLine());
-        } catch (NumberFormatException e) {
-            return -1;
-        }
     }
 }

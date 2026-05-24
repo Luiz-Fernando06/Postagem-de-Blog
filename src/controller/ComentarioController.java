@@ -1,5 +1,6 @@
 package controller;
 
+import app.Utilitarios;
 import model.Comentario;
 import model.Post;
 import service.ComentarioService;
@@ -7,7 +8,6 @@ import service.PostService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 import static controller.UsuarioController.usuarioLogado;
 
 /**
@@ -15,18 +15,18 @@ import static controller.UsuarioController.usuarioLogado;
  */
 public class ComentarioController {
 
-    private final Scanner ler;
-    private final ComentarioService comentarioService;
-    private final PostService postService;
+    private final Scanner LER;
+    private final ComentarioService COMENTARIOSERVICE;
+    private final PostService POSTSERVICE;
 
     public ComentarioController(ComentarioService comentarioService, PostService postService, Scanner ler) {
-        this.comentarioService = comentarioService;
-        this.postService = postService;
-        this.ler = ler;
+        this.COMENTARIOSERVICE = comentarioService;
+        this.POSTSERVICE = postService;
+        this.LER = ler;
     }
 
     public void comentarPost() {
-        Main.limparTela();
+        Utilitarios.limparTela();
 
         if (usuarioLogado == null) {
             System.out.println("Faca login!");
@@ -39,26 +39,21 @@ public class ComentarioController {
         }
 
         System.out.print("Comentario: ");
-        String comentario = ler.nextLine();
+        String comentario = LER.nextLine();
 
-        boolean sucesso = comentarioService.criarComentario(
-                usuarioLogado.getId(),
-                postEscolhido.getId(),
-                comentario
-        );
-
+        boolean sucesso = COMENTARIOSERVICE.criarComentario(usuarioLogado.getId(), postEscolhido.getId(), comentario);
         System.out.println(sucesso ? "Comentario criado!" : "Nao foi possivel criar o comentario.");
     }
 
     public void listarComentariosDoPost() {
-        Main.limparTela();
+        Utilitarios.limparTela();
 
         Post postEscolhido = escolherPost("Escolha um post para ver os comentarios: ");
         if (postEscolhido == null) {
             return;
         }
 
-        List<Comentario> comentarios = comentarioService.listarComentariosDoPost(postEscolhido.getId());
+        List<Comentario> comentarios = COMENTARIOSERVICE.listarComentariosDoPost(postEscolhido.getId());
 
         if (comentarios.isEmpty()) {
             System.out.println("Nenhum comentario nesse post.");
@@ -69,7 +64,7 @@ public class ComentarioController {
     }
 
     public void editarComentario() {
-        Main.limparTela();
+        Utilitarios.limparTela();
 
         if (usuarioLogado == null) {
             System.out.println("Faca login!");
@@ -94,9 +89,9 @@ public class ComentarioController {
         }
 
         System.out.print("Novo comentario: ");
-        String conteudo = ler.nextLine();
+        String conteudo = LER.nextLine();
 
-        boolean sucesso = comentarioService.editarComentario(
+        boolean sucesso = COMENTARIOSERVICE.editarComentario(
                 comentarioEscolhido.getId(),
                 usuarioLogado.getId(),
                 conteudo
@@ -106,7 +101,7 @@ public class ComentarioController {
     }
 
     public void deletarComentario() {
-        Main.limparTela();
+        Utilitarios.limparTela();
 
         if (usuarioLogado == null) {
             System.out.println("Faca login!");
@@ -131,19 +126,19 @@ public class ComentarioController {
         }
 
         System.out.print("Tem certeza que deseja deletar esse comentario? [S/N]: ");
-        String resposta = ler.nextLine();
+        String resposta = LER.nextLine();
 
         if (!resposta.equalsIgnoreCase("s")) {
             System.out.println("Operacao cancelada.");
             return;
         }
 
-        boolean sucesso = comentarioService.deletarComentario(comentarioEscolhido.getId(), usuarioLogado.getId());
+        boolean sucesso = COMENTARIOSERVICE.deletarComentario(comentarioEscolhido.getId(), usuarioLogado.getId());
         System.out.println(sucesso ? "Comentario deletado!" : "Erro ao deletar comentario.");
     }
 
     private Post escolherPost(String mensagem) {
-        List<Post> posts = postService.listarPosts();
+        List<Post> posts = POSTSERVICE.listarPosts();
 
         if (posts.isEmpty()) {
             System.out.println("Nenhum post.");
@@ -155,7 +150,7 @@ public class ComentarioController {
             System.out.println("[" + (i + 1) + "] " + post.getTitulo() + " - Autor: " + post.getAutor().getNome());
         }
 
-        int escolha = lerInteiro(mensagem);
+        int escolha = Utilitarios.lerInteiro(mensagem);
 
         if (escolha < 1 || escolha > posts.size()) {
             System.out.println("Opcao invalida!");
@@ -166,7 +161,7 @@ public class ComentarioController {
     }
 
     private List<Comentario> filtrarComentariosDoUsuario(long idPost) {
-        List<Comentario> comentarios = comentarioService.listarComentariosDoPost(idPost);
+        List<Comentario> comentarios = COMENTARIOSERVICE.listarComentariosDoPost(idPost);
         List<Comentario> meusComentarios = new ArrayList<>();
 
         for (Comentario comentario : comentarios) {
@@ -180,7 +175,7 @@ public class ComentarioController {
     }
 
     private Comentario escolherComentario(List<Comentario> comentarios, String mensagem) {
-        int escolha = lerInteiro(mensagem);
+        int escolha = Utilitarios.lerInteiro(mensagem);
 
         if (escolha < 1 || escolha > comentarios.size()) {
             System.out.println("Opcao invalida!");
@@ -193,23 +188,13 @@ public class ComentarioController {
     private void exibirComentarios(List<Comentario> comentarios) {
         for (int i = 0; i < comentarios.size(); i++) {
             Comentario comentario = comentarios.get(i);
-            Main.linha();
+            Utilitarios.linha();
             System.out.println("[" + (i + 1) + "] Comentario ID " + comentario.getId());
             System.out.println("Autor: " + comentario.getAutor().getNome());
             System.out.println("Criado em: " + comentario.getDataCriacao());
             System.out.println("Curtidas: " + comentario.getQtdCurtidas());
             System.out.println(comentario.getConteudo());
         }
-        Main.linha();
-    }
-
-    private int lerInteiro(String mensagem) {
-        System.out.print(mensagem);
-
-        try {
-            return Integer.parseInt(ler.nextLine());
-        } catch (NumberFormatException e) {
-            return -1;
-        }
+        Utilitarios.linha();
     }
 }
