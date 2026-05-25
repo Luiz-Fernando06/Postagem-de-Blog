@@ -26,18 +26,10 @@ public class Utilitarios {
         }
     }
 
-    public static void exibirMenu() {
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║        📝  B L O G U I N H O  📝       ║");
-        System.out.println("╠══════════════════════════════════════╣");
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║             MENU PRINCIPAL           ║");
-        System.out.println("╠══════════════════════════════════════╣");
-        System.out.println("║  [1]  Menu Usuario                   ║");
-        System.out.println("║  [2]  Menu Post                      ║");
-        System.out.println("║  [3]  Menu Comentario                ║");
-        System.out.println("║  [4]  Menu Curtidas                  ║");
-        System.out.println("║  [0]  Sair                           ║");
-        System.out.println("╚══════════════════════════════════════╝");
+    public static void pausar() {
+        Scanner ler = new Scanner(System.in);
+        System.out.println();
+        System.out.print("Pressione ENTER para continuar...");
+        ler.nextLine();
     }
 }

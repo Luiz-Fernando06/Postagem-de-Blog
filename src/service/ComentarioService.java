@@ -19,9 +19,7 @@ public class ComentarioService {
     private PostRepository postRepository;
     private CurtidasService curtidasService;
 
-    public ComentarioService(ComentarioRepository comentarioRepository,
-                             UsuarioRepository usuarioRepository,
-                             PostRepository postRepository) {
+    public ComentarioService(ComentarioRepository comentarioRepository, UsuarioRepository usuarioRepository, PostRepository postRepository) {
         this.comentarioRepository = comentarioRepository;
         this.usuarioRepository = usuarioRepository;
         this.postRepository = postRepository;

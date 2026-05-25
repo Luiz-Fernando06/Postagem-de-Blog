@@ -12,7 +12,7 @@ public class UsuarioController {
 
     private Scanner LER = new Scanner(System.in);
     private UsuarioService USUARIOSERVICE;
-    protected static Usuario usuarioLogado;
+    public static Usuario usuarioLogado;
 
     public UsuarioController(UsuarioService usuarioService, Scanner ler) {
         this.USUARIOSERVICE = usuarioService;
