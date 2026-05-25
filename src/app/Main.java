@@ -302,6 +302,7 @@ public class Main {
                     break;
 
                 case 0:
+                    executando = false;
                     Utilitarios.limparTela();
                     break;
 
