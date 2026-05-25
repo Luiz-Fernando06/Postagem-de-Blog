@@ -110,19 +110,20 @@ public class Main {
     }
 
     public static void usuarioMenu() {
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║              MENU USUARIO            ║");
-        System.out.println("╠══════════════════════════════════════╣");
-        System.out.println("║  [1]  Cadastrar Usuario              ║");
-        System.out.println("║  [2]  Login                          ║");
-        System.out.println("║  [3]  Editar Usuario                 ║");
-        System.out.println("║  [4]  Logout                         ║");
-        System.out.println("║  [0]  Voltar                         ║");
-        System.out.println("╚══════════════════════════════════════╝");
-        int escolha = Utilitarios.lerInteiro("Escolha uma opção: ");
-
         boolean executando = true;
+
         do {
+            System.out.println("╔══════════════════════════════════════╗");
+            System.out.println("║              MENU USUARIO            ║");
+            System.out.println("╠══════════════════════════════════════╣");
+            System.out.println("║  [1]  Cadastrar Usuario              ║");
+            System.out.println("║  [2]  Login                          ║");
+            System.out.println("║  [3]  Editar Usuario                 ║");
+            System.out.println("║  [4]  Logout                         ║");
+            System.out.println("║  [0]  Voltar                         ║");
+            System.out.println("╚══════════════════════════════════════╝");
+            int escolha = Utilitarios.lerInteiro("Escolha uma opção: ");
+
             switch (escolha) {
                 case 1:
                     usuarioController.cadastrar();
@@ -163,21 +164,21 @@ public class Main {
     }
 
     public static void postMenu() {
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║               Menu Post              ║");
-        System.out.println("╠══════════════════════════════════════╣");
-        System.out.println("║  [1]  Criar Post                     ║");
-        System.out.println("║  [2]  Editar Post                    ║");
-        System.out.println("║  [3]  Remover Post                   ║");
-        System.out.println("║  [4]  Listar Post                    ║");
-        System.out.println("║  [5]  Buscar Posts                   ║");
-        System.out.println("║  [0]  Voltar                         ║");
-        System.out.println("╚══════════════════════════════════════╝");
-        int escolha = Utilitarios.lerInteiro("Escolha uma opção: ");
-
         boolean executando = true;
 
         do {
+            System.out.println("╔══════════════════════════════════════╗");
+            System.out.println("║               Menu Post              ║");
+            System.out.println("╠══════════════════════════════════════╣");
+            System.out.println("║  [1]  Criar Post                     ║");
+            System.out.println("║  [2]  Editar Post                    ║");
+            System.out.println("║  [3]  Remover Post                   ║");
+            System.out.println("║  [4]  Listar Post                    ║");
+            System.out.println("║  [5]  Buscar Posts                   ║");
+            System.out.println("║  [0]  Voltar                         ║");
+            System.out.println("╚══════════════════════════════════════╝");
+            int escolha = Utilitarios.lerInteiro("Escolha uma opção: ");
+
             switch (escolha) {
                 case 1:
                     postController.criarPost();
@@ -223,20 +224,20 @@ public class Main {
     }
 
     public static void comentarioMenu() {
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║            Menu Comentario           ║");
-        System.out.println("╠══════════════════════════════════════╣");
-        System.out.println("║  [1]  Comentar em um Post            ║");
-        System.out.println("║  [2]  Editar Comentario              ║");
-        System.out.println("║  [3]  Remover Comentario             ║");
-        System.out.println("║  [4]  Listar Comentario              ║");
-        System.out.println("║  [0]  Voltar                         ║");
-        System.out.println("╚══════════════════════════════════════╝");
-        int escolha = Utilitarios.lerInteiro("Escolha uma opção: ");
-
         boolean executando = true;
 
         do {
+            System.out.println("╔══════════════════════════════════════╗");
+            System.out.println("║            Menu Comentario           ║");
+            System.out.println("╠══════════════════════════════════════╣");
+            System.out.println("║  [1]  Comentar em um Post            ║");
+            System.out.println("║  [2]  Editar Comentario              ║");
+            System.out.println("║  [3]  Remover Comentario             ║");
+            System.out.println("║  [4]  Listar Comentario              ║");
+            System.out.println("║  [0]  Voltar                         ║");
+            System.out.println("╚══════════════════════════════════════╝");
+            int escolha = Utilitarios.lerInteiro("Escolha uma opção: ");
+
             switch (escolha) {
                 case 1:
                     comentarioController.comentarPost();
@@ -276,18 +277,18 @@ public class Main {
     }
 
     public static void curtidasMenu() {
-        System.out.println("╔══════════════════════════════════════╗");
-        System.out.println("║             MENU CURTIDAS            ║");
-        System.out.println("╠══════════════════════════════════════╣");
-        System.out.println("║  [1]  Curtir/Descurtir Post          ║");
-        System.out.println("║  [2]  Curtir/Descurtir Comentario    ║");
-        System.out.println("║  [0]  Voltar                         ║");
-        System.out.println("╚══════════════════════════════════════╝");
-        int escolha = Utilitarios.lerInteiro("Escolha uma opção: ");
-
         boolean executando = true;
 
         do {
+            System.out.println("╔══════════════════════════════════════╗");
+            System.out.println("║             MENU CURTIDAS            ║");
+            System.out.println("╠══════════════════════════════════════╣");
+            System.out.println("║  [1]  Curtir/Descurtir Post          ║");
+            System.out.println("║  [2]  Curtir/Descurtir Comentario    ║");
+            System.out.println("║  [0]  Voltar                         ║");
+            System.out.println("╚══════════════════════════════════════╝");
+            int escolha = Utilitarios.lerInteiro("Escolha uma opção: ");
+
             switch (escolha) {
                 case 1:
                     curtidasController.toggleCurtirPost();
