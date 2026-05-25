@@ -28,7 +28,7 @@ public class UsuarioController {
         System.out.print("Email: ");
         String email = LER.nextLine();
 
-        System.out.println("Senha: ");
+        System.out.print("Senha: ");
         String senha = LER.nextLine();
 
         boolean sucesso = USUARIOSERVICE.cadastro(nome, email, senha);
