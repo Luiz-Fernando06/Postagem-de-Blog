@@ -31,8 +31,8 @@ public class Main {
 
     private static UsuarioService usuarioService = new UsuarioService(usuarioRepository);
     private static PostService postService = new PostService(usuarioRepository, postRepository);
-    private static ComentarioService comentarioService = new ComentarioService(comentarioRepository, usuarioRepository, postRepository);
-    private static CurtidasService curtidasService = new CurtidasService(usuarioRepository, curtidasRepository);
+    private static ComentarioService comentarioService = new ComentarioService(comentarioRepository, usuarioRepository, postRepository, curtidasRepository);
+    private static CurtidasService curtidasService = new CurtidasService(usuarioRepository, curtidasRepository, postRepository, comentarioRepository);
 
     private static UsuarioController usuarioController = new UsuarioController(usuarioService, ler);
     private static PostController postController = new PostController(postService, ler);
@@ -88,6 +88,7 @@ public class Main {
                     Utilitarios.limparTela();
                     System.out.println("Opção inválida");
                     Utilitarios.pausar();
+                    Utilitarios.limparTela();
 
             }
 

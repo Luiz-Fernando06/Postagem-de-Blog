@@ -8,7 +8,7 @@ import java.util.Scanner;
 public class Utilitarios {
 
     public static void limparTela() {
-        System.out.println("\n\n\n\n\n");
+        System.out.println("\n\n\n\n\n\n\n\n");
     }
 
     public static void linha() {
@@ -20,7 +20,7 @@ public class Utilitarios {
         Scanner ler = new Scanner(System.in);
 
         try {
-            return Integer.parseInt(ler.nextLine());
+            return Integer.parseInt(ler.nextLine().trim());
         } catch (NumberFormatException e) {
             return -1;
         }

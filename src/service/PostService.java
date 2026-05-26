@@ -81,7 +81,7 @@ public class PostService {
         Post post = POSTREPOSITORY.buscarId(id);
         if (post == null) return false;
 
-        post.setConteudo(conteudo);
+        post.setConteudo(conteudo.trim());
         POSTREPOSITORY.salvar(post);
         return true;
     }
@@ -103,14 +103,6 @@ public class PostService {
     public boolean deletarPost(long idPost) {
         Post post = POSTREPOSITORY.buscarId(idPost);
         if (post == null) return false;
-
-        if (comentarioRepository != null) {
-            comentarioRepository.removerComentariosDoPost(post);
-        }
-
-        if (curtidasService != null) {
-            curtidasService.removerCurtidas(post);
-        }
 
         POSTREPOSITORY.remover(post);
         return true;

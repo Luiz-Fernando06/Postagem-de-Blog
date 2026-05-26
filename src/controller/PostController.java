@@ -214,11 +214,6 @@ public class PostController {
         Post postEscolhido = escolherPost(meusPosts, "Escolha um Post para deletar: ");
         if (postEscolhido == null) return;
 
-        if (postEscolhido.getAutor().getId() != usuarioLogado.getId()) {
-            System.out.println("Voce nao pode deletar esse post!");
-            return;
-        }
-
         System.out.println("Tem certeza que deseja deletar esse post? [S/N]");
         String resposta = LER.nextLine();
 
@@ -250,7 +245,9 @@ public class PostController {
         List<Post> posts = POSTSERVICE.listarPosts();
 
         for (Post post : posts) {
-            meusPosts.add(post);
+            if (post.getAutor().getId() == usuarioLogado.getId()) {
+                meusPosts.add(post);
+            }
         }
 
         for (int i = 0; i < meusPosts.size(); i++) {
