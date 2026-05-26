@@ -72,5 +72,5 @@ src/
 
 ## Integrantes
 
-Luiz 
-Christian
+- Luiz 
+- Christian
