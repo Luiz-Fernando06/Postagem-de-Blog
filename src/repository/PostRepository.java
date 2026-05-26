@@ -148,16 +148,47 @@ public class PostRepository {
     }
 
     public void remover(Post post) {
-        String sql = "DELETE FROM post WHERE id = ?";
+        String sqlCurtidasComentarios =
+                "DELETE c FROM curtidas c " +
+                        "JOIN comentario cm ON c.comentario_id = cm.id " +
+                        "WHERE cm.post_id = ?";
 
-        try (Connection con = ConexaoBanco.getConexao();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+        String sqlCurtidasPost = "DELETE FROM curtidas WHERE post_id = ?";
+        String sqlComentarios = "DELETE FROM comentario WHERE post_id = ?";
+        String sqlPost = "DELETE FROM post WHERE id = ?";
 
-            ps.setLong(1, post.getId());
-            ps.executeUpdate();
+
+        try (Connection con = ConexaoBanco.getConexao()) {
+
+            con.setAutoCommit(false);
+
+            try (
+                    PreparedStatement psCurtidasComentarios = con.prepareStatement(sqlCurtidasComentarios);
+                    PreparedStatement psCurtidasPost = con.prepareStatement(sqlCurtidasPost);
+                    PreparedStatement psComentarios = con.prepareStatement(sqlComentarios);
+                    PreparedStatement psPost = con.prepareStatement(sqlPost)
+            ) {
+                psCurtidasComentarios.setLong(1, post.getId());
+                psCurtidasComentarios.executeUpdate();
+
+                psCurtidasPost.setLong(1, post.getId());
+                psCurtidasPost.executeUpdate();
+
+                psComentarios.setLong(1, post.getId());
+                psComentarios.executeUpdate();
+
+                psPost.setLong(1, post.getId());
+                psPost.executeUpdate();
+
+                con.commit();
+
+            } catch (SQLException e) {
+                con.rollback();
+                System.out.println("Erro ao remover post: " + e.getMessage());
+            }
 
         } catch (SQLException e) {
-            System.out.println("Erro ao remover post: " + e.getMessage());
+            System.out.println("Erro ao conectar com o banco: " + e.getMessage());
         }
     }
 

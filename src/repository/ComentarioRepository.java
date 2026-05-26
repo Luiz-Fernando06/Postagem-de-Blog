@@ -147,16 +147,35 @@ public class ComentarioRepository {
     // Deleta todos os comentários de um post antes de deletar o post
     // (necessário por causa da FOREIGN KEY comentario.post_id → post.id)
     public void removerComentariosDoPost(Post post) {
-        String sql = "DELETE FROM comentario WHERE post_id = ?";
+        String sqlCurtidasComentarios =
+                "DELETE c FROM curtidas c " +
+                        "JOIN comentario cm ON c.comentario_id = cm.id " +
+                        "WHERE cm.post_id = ?";
 
-        try (Connection con = ConexaoBanco.getConexao();
-             PreparedStatement ps = con.prepareStatement(sql)) {
+        String sqlComentarios = "DELETE FROM comentario WHERE post_id = ?";
+        try (Connection con = ConexaoBanco.getConexao()) {
 
-            ps.setLong(1, post.getId());
-            ps.executeUpdate();
+            con.setAutoCommit(false);
+
+            try (
+                    PreparedStatement psCurtidasComentarios = con.prepareStatement(sqlCurtidasComentarios);
+                    PreparedStatement psComentarios = con.prepareStatement(sqlComentarios)
+            ) {
+                psCurtidasComentarios.setLong(1, post.getId());
+                psCurtidasComentarios.executeUpdate();
+
+                psComentarios.setLong(1, post.getId());
+                psComentarios.executeUpdate();
+
+                con.commit();
+
+            } catch (SQLException e) {
+                con.rollback();
+                System.out.println("Erro ao remover comentarios do post: " + e.getMessage());
+            }
 
         } catch (SQLException e) {
-            System.out.println("Erro ao remover comentarios do post: " + e.getMessage());
+            System.out.println("Erro ao conectar com o banco: " + e.getMessage());
         }
     }
 

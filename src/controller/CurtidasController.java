@@ -55,9 +55,6 @@ public class CurtidasController {
             return;
         }
 
-        Post post = escolherPost("Escolha o post do comentario: ");
-        if (post == null) return;
-
         Comentario comentarios = escolherComentarioDoPost("Escolha o comentario: ");
         if (comentarios == null) return;
 

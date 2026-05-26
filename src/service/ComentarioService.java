@@ -4,6 +4,7 @@ import model.Comentario;
 import model.Post;
 import model.Usuario;
 import repository.ComentarioRepository;
+import repository.CurtidasRepository;
 import repository.PostRepository;
 import repository.UsuarioRepository;
 import java.time.LocalDate;
@@ -17,20 +18,15 @@ public class ComentarioService {
     private ComentarioRepository comentarioRepository;
     private UsuarioRepository usuarioRepository;
     private PostRepository postRepository;
+    private CurtidasRepository curtidasRepository;
     private CurtidasService curtidasService;
 
-    public ComentarioService(ComentarioRepository comentarioRepository, UsuarioRepository usuarioRepository, PostRepository postRepository) {
+    public ComentarioService(ComentarioRepository comentarioRepository, UsuarioRepository usuarioRepository,
+                             PostRepository postRepository, CurtidasRepository curtidasRespository) {
         this.comentarioRepository = comentarioRepository;
         this.usuarioRepository = usuarioRepository;
         this.postRepository = postRepository;
-    }
-
-    public ComentarioService(ComentarioRepository comentarioRepository,
-                             UsuarioRepository usuarioRepository,
-                             PostRepository postRepository,
-                             CurtidasService curtidasService) {
-        this(comentarioRepository, usuarioRepository, postRepository);
-        this.curtidasService = curtidasService;
+        this.curtidasRepository = curtidasRespository;
     }
 
     public boolean criarComentario(long idAutor, long idPost, String conteudo ) {

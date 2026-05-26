@@ -87,7 +87,7 @@ public class UsuarioService {
             return false;
         }
 
-        user.setEmail(email);
+        user.setEmail(email.trim());
         USUARIOREPOSITORY.salvar(user);
         return true;
     }

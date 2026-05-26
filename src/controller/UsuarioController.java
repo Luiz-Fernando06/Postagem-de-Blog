@@ -51,7 +51,7 @@ public class UsuarioController {
         System.out.print("Email: ");
         String email = LER.nextLine();
 
-        System.out.println("Senha: ");
+        System.out.print("Senha: ");
         String senha = LER.nextLine();
 
         Usuario user = USUARIOSERVICE.login(email, senha);
@@ -95,8 +95,7 @@ public class UsuarioController {
             System.out.println("3 - Senha");
             System.out.println("4 - Tudo");
             System.out.println("5 - Sair");
-            System.out.print("> ");
-            int opcao = Integer.parseInt(LER.nextLine());
+            int opcao = Utilitarios.lerInteiro("> ");
 
             switch (opcao) {
                 case 1:

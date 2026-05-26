@@ -19,7 +19,7 @@ public class ConexaoBanco {
     // ----------------------------------------------------------------
     private static final String URL    = "jdbc:mysql://localhost:3306/bloguinho?useSSL=false&serverTimezone=America/Sao_Paulo";
     private static final String USER   = "root";       // seu usuário MySQL
-    private static final String PASSWORD = "Tire2002@";     // sua senha MySQL
+    private static final String PASSWORD = "";     // sua senha MySQL
     // ----------------------------------------------------------------
 
     /**

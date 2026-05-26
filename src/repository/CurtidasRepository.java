@@ -21,18 +21,25 @@ import java.util.List;
 public class CurtidasRepository {
 
     public void salvar(Curtidas curtidas) {
-        // Descobre se a curtida é em post ou comentário
-        boolean ehPost = curtidas.getCurtivel() instanceof Post;
-
-        String sql = ehPost
-                ? "INSERT INTO curtidas (autor_id, post_id) VALUES (?, ?)"
-                : "INSERT INTO curtidas (autor_id, comentario_id) VALUES (?, ?)";
+        String sql = "INSERT INTO curtidas (autor_id, post_id, comentario_id) VALUES (?, ?, ?)";
 
         try (Connection con = ConexaoBanco.getConexao();
              PreparedStatement ps = con.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)) {
 
             ps.setLong(1, curtidas.getAutor().getId());
-            ps.setLong(2, curtidas.getCurtivel().getId());
+
+            if (curtidas.getCurtivel() instanceof Post) {
+                ps.setLong(2, curtidas.getCurtivel().getId());
+                ps.setNull(3, Types.BIGINT);
+
+            } else if (curtidas.getCurtivel() instanceof Comentario) {
+                ps.setNull(2, Types.BIGINT);
+                ps.setLong(3, curtidas.getCurtivel().getId());
+
+            } else {
+                System.out.println("Tipo curtivel invalido: " + curtidas.getCurtivel().getClass().getName());
+                return;
+            }
 
             ps.executeUpdate();
 
@@ -66,11 +73,16 @@ public class CurtidasRepository {
     // Retorna null se não curtiu ainda (usado no toggle da CurtidasService).
     // ------------------------------------------------------------------
     public Curtidas buscarCurtidas(Usuario autor, Curtivel curtivel) {
-        boolean ehPost = curtivel instanceof Post;
+        String sql;
 
-        String sql = ehPost
-                ? "SELECT * FROM curtidas WHERE autor_id = ? AND post_id = ?"
-                : "SELECT * FROM curtidas WHERE autor_id = ? AND comentario_id = ?";
+        if (curtivel instanceof Post) {
+            sql = "SELECT * FROM curtidas WHERE autor_id = ? AND post_id = ?";
+        } else if (curtivel instanceof Comentario) {
+            sql = "SELECT * FROM curtidas WHERE autor_id = ? AND comentario_id = ?";
+        } else {
+            System.out.println("Tipo curtivel invalido: " + curtivel.getClass().getName());
+            return null;
+        }
 
         try (Connection con = ConexaoBanco.getConexao();
              PreparedStatement ps = con.prepareStatement(sql)) {
