@@ -147,11 +147,9 @@ No arquivo: `repository/ConexaoBanco.java`
 
 Verifique se os dados estão corretos:
 
-`private static final String URL = "jdbc:mysql://localhost:3306/bloguinho?useSSL=false&serverTimezone=America/Sao_Paulo";`
-
-`private static final String USER = "root";`
-
-`private static final String PASSWORD = "";`
+- `private static final String URL = "jdbc:mysql://localhost:3306/bloguinho?useSSL=false&serverTimezone=America/Sao_Paulo";`
+- `private static final String USER = "root";`
+- `private static final String PASSWORD = "";`
 
 Altere o usuário e a senha conforme a configuração do seu MySQL.
 
@@ -170,8 +168,8 @@ Execute a classe:
 O sistema será iniciado no terminal com o menu principal.
 
 ## 👥 Autores
-Luiz Fernando Martins dos Santos
-Christian Espíndula Mendonça
+- Luiz Fernando Martins dos Santos
+- Christian Espíndula Mendonça
 
 ## 📚 Projeto acadêmico
 
