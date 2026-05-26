@@ -79,11 +79,11 @@ src/
 
 Contém as entidades principais do sistema.
 
-Usuario: representa o usuário cadastrado.
-Post: representa uma postagem.
-Comentario: representa um comentário feito em um post.
-Curtidas: representa uma curtida feita por um usuário.
-Curtivel: interface usada para permitir curtidas em posts e comentários.
+- Usuario: representa o usuário cadastrado.
+- Post: representa uma postagem.
+- Comentario: representa um comentário feito em um post.
+- Curtidas: representa uma curtida feita por um usuário.
+- Curtivel: interface usada para permitir curtidas em posts e comentários.
 
 #### Repository
 
