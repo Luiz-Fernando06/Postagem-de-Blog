@@ -38,6 +38,10 @@ O projeto foi organizado em packages para separar responsabilidades e facilitar 
 ## 🗂️ Estrutura do projeto
 
 ```text
+database/
+├── bloguinho.sql
+lib/
+├── msql-conector
 src/
 ├── app/
 │   ├── Main.java
