@@ -3,13 +3,13 @@
 Projeto acadêmico desenvolvido em Java com integração ao banco de dados MySQL por meio de JDBC.  
 O sistema simula uma aplicação simples de postagens de blog, permitindo cadastro de usuários, login, criação de posts, comentários e curtidas.
 
-## 📌 Sobre o projeto
+##  Sobre o projeto
 
 O **Bloguinho** é um sistema CRUD executado pelo terminal, criado para praticar conceitos de Programação Orientada a Objetos, organização em camadas e persistência de dados com banco relacional.
 
 O projeto foi organizado em packages para separar responsabilidades e facilitar a manutenção do código.
 
-## 🚀 Funcionalidades
+## Funcionalidades
 
 - Cadastro de usuários
 - Login e logout
@@ -26,7 +26,7 @@ O projeto foi organizado em packages para separar responsabilidades e facilitar 
 - Curtir e descurtir posts
 - Curtir e descurtir comentários
 
-## 🛠️ Tecnologias utilizadas
+## Tecnologias utilizadas
 
 - Java
 - MySQL
@@ -35,7 +35,7 @@ O projeto foi organizado em packages para separar responsabilidades e facilitar 
 - IntelliJ IDEA
 - Git e GitHub
 
-## 🗂️ Estrutura do projeto
+## Estrutura do projeto
 
 ```text
 src/
