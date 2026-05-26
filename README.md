@@ -74,8 +74,8 @@ src/
     └── CurtidasService.java
 ````
 
-🧩 Organização das camadas
-Model
+## 🧩 Organização das camadas
+#### Model
 
 Contém as entidades principais do sistema.
 
@@ -84,77 +84,66 @@ Post: representa uma postagem.
 Comentario: representa um comentário feito em um post.
 Curtidas: representa uma curtida feita por um usuário.
 Curtivel: interface usada para permitir curtidas em posts e comentários.
-Repository
+
+#### Repository
 
 Responsável pela comunicação com o banco de dados usando JDBC.
 
 Essa camada executa comandos SQL como:
 
-INSERT
-SELECT
-UPDATE
-DELETE
-Service
+- INSERT
+- SELECT
+- UPDATE
+- DELETE
+
+#### Service
 
 Contém as regras de negócio do sistema.
 
 Exemplos:
 
-validar campos vazios;
-impedir email duplicado;
-verificar se o usuário está logado;
-permitir edição apenas de dados próprios;
-controlar o funcionamento de curtir/descurtir.
-Controller
+- validar campos vazios;
+- impedir email duplicado;
+- verificar se o usuário está logado;
+- permitir edição apenas de dados próprios;
+- controlar o funcionamento de curtir/descurtir.
+
+#### Controller
 
 Responsável pela interação com o usuário pelo terminal.
 
 Recebe os dados digitados, chama os services e exibe as mensagens no console.
 
-App
+#### App
 
 Contém a classe principal Main, responsável por iniciar o sistema e exibir os menus.
 
-🗄️ Banco de dados
+## 🗄️ Banco de dados
 
 Banco utilizado:
 
-bloguinho
+- bloguinho
 
 Principais tabelas:
 
-usuario
-post
-comentario
-curtidas
+- usuario
+- post
+- comentario
+- curtidas
 
-A tabela curtidas permite registrar curtidas em posts e comentários.
-Quando a curtida pertence a um post, o campo post_id é preenchido e comentario_id fica nulo.
-Quando a curtida pertence a um comentário, o campo comentario_id é preenchido e post_id fica nulo.
+## ⚙️ Como executar o projeto
 
-⚙️ Como executar o projeto
-1. Clonar o repositório
+#### 1. Clonar o repositório
 git clone https://github.com/SEU-USUARIO/NOME-DO-REPOSITORIO.git
-2. Abrir o projeto na IDE
 
+#### 2. Abrir o projeto na IDE
 Abra o projeto no IntelliJ IDEA ou em outra IDE Java de sua preferência.
 
-3. Criar o banco de dados
-
+#### 3. Criar o banco de dados
 Execute o script SQL do projeto no MySQL.
 
-Exemplo:
-
-CREATE DATABASE bloguinho;
-USE bloguinho;
-
-Depois execute o restante do script com as tabelas do sistema.
-
-4. Configurar conexão com o banco
-
-No arquivo:
-
-repository/ConexaoBanco.java
+#### 4. Configurar conexão com o banco
+No arquivo: `repository/ConexaoBanco.java`
 
 Verifique se os dados estão corretos:
 
@@ -164,52 +153,24 @@ private static final String PASSWORD = "";
 
 Altere o usuário e a senha conforme a configuração do seu MySQL.
 
-5. Adicionar o driver JDBC
+#### 5. Adicionar o driver JDBC
 
 Adicione o MySQL Connector/J ao projeto.
 
-Dependência necessária:
+Dependência necessária: `mysql-connector-j`
 
-mysql-connector-j
-6. Executar o sistema
+#### 6. Executar o sistema
 
 Execute a classe:
 
-app/Main.java
+- `app/Main.java`
 
 O sistema será iniciado no terminal com o menu principal.
 
-🖥️ Menu principal
-[1] Menu Usuario
-[2] Menu Post
-[3] Menu Comentario
-[4] Menu Curtidas
-[0] Sair
-🔁 Operações CRUD implementadas
-Create
-Cadastro de usuários
-Criação de posts
-Criação de comentários
-Registro de curtidas
-Read
-Login por email
-Listagem de posts
-Busca de posts por ID
-Busca de posts por título
-Listagem de comentários de um post
-Update
-Edição de usuário
-Edição de título do post
-Edição de conteúdo do post
-Edição de comentário
-Atualização da quantidade de curtidas
-Delete
-Remoção de posts
-Remoção de comentários
-Remoção de curtidas ao descurtir
-👥 Autores
+## 👥 Autores
 Luiz Fernando Martins dos Santos
 Christian Espíndula Mendonça
-📚 Projeto acadêmico
+
+## 📚 Projeto acadêmico
 
 Projeto desenvolvido para a disciplina de Programação Orientada a Objetos em Java, com foco em CRUD, JDBC, MySQL e organização em camadas.
