@@ -134,7 +134,7 @@ Principais tabelas:
 ## ⚙️ Como executar o projeto
 
 #### 1. Clonar o repositório
-git clone https://github.com/SEU-USUARIO/NOME-DO-REPOSITORIO.git
+git clone https://github.com/Luiz-Fernando06/Postagem-de-Blog.git
 
 #### 2. Abrir o projeto na IDE
 Abra o projeto no IntelliJ IDEA ou em outra IDE Java de sua preferência.
